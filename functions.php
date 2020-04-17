@@ -23,7 +23,7 @@ function theme_style(){
 function theme_script(){
     wp_enqueue_script(
         'main',
-        get_template_directory_uri() . '/dist/js/main.js',
+        get_template_directory_uri() . '/dist/js/app.min.js',
         array('jquery'),
         NULL,
         true
@@ -77,8 +77,7 @@ function register_post_types(){
     ));
 }
 
-
-/* ================== Theme Settings =================== */
+/* ================== ACF Theme Settings =================== */
 if( function_exists('acf_add_options_page') ) {
 	
 	acf_add_options_page(array(
