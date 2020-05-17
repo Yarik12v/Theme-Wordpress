@@ -10,33 +10,32 @@ add_action('init', 'register_post_types');
 /* ================== Style =================== */
 function theme_style(){
     wp_enqueue_style(
-        'main-style',
-        get_template_directory_uri() . '/dist/css/main.min.css'
-    );
-    wp_enqueue_style(
         'slick-slider', 
         'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css'
     );
-}
+    wp_enqueue_style(
+        'main-style',
+        get_template_directory_uri() . '/dist/css/main.min.css', array(), THEME_FILES_VERSION
+    );
+};
 
 /* ================== Script =================== */
 function theme_script(){
-    wp_enqueue_script(
-        'main',
-        get_template_directory_uri() . '/dist/js/app.min.js',
-        array('jquery'),
-        NULL,
-        true
-    );
 	wp_enqueue_script(
         'slick-slider',
         'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js',
         array('jquery'),
         NULL,
         true
-	);
+    );
+    wp_enqueue_script(
+        'main',
+        get_template_directory_uri() . '/dist/js/app.min.js', array(), THEME_FILES_VERSION,
+        array('jquery'),
+        NULL,
+        true
+    );
 };
-
 /* ================== Menu =================== */
 function theme_register_nav_menu(){
     register_nav_menus(array(
@@ -89,3 +88,11 @@ if( function_exists('acf_add_options_page') ) {
 	));
 		
 }
+
+/* ================== Widgets =================== */
+if ( function_exists('register_sidebar') ) register_sidebar();
+
+
+
+/* ================== Theme Version =================== */
+define( 'THEME_FILES_VERSION', '10.1');
